@@ -11,3 +11,4 @@ CL.write.1.tlog
 /hw4/hw4.sdf
 bin
 obj
+*.suo
