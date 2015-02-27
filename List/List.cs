@@ -43,7 +43,14 @@ namespace List
             {
                 listElement.GetNext().SetPrev(listElement.GetPrev());
             }
+            this.numberOfElems--;
             return key;
+        }
+
+        // Checks list on emptiness
+        public bool IsEmpty()
+        {
+            return (this.numberOfElems == 0);
         }
 
         // Searches the element by its key
@@ -55,6 +62,29 @@ namespace List
                 temp = temp.GetNext();
             }
             return temp;
+        }
+
+        // Prints whole list to console
+        public void Print()
+        {
+            if (this.IsEmpty())
+            {
+                Console.WriteLine("Your list is empty");
+                return;
+            }
+            ListElement temp = this.head;
+            Console.WriteLine("Your list: ");
+            while (temp != null)
+            {
+                Console.Write("{0} ", temp.GetKey());
+                temp = temp.GetNext();
+            }
+            Console.WriteLine();
+        }
+
+        public int Size()
+        {
+            return this.numberOfElems;
         }
         
         private ListElement head;
