@@ -8,8 +8,11 @@ namespace MatrixSort
 {
     class Program
     {
-        static void Initialization(ref int[ , ] array, int width, int height)
+        // Two dimensional array initialization
+        static void Initialization(int[ , ] array)
         {
+            int width = array.GetLength(1);
+            int height = array.GetLength(0);
             Console.WriteLine("Enter your array {0} x {1}:", height, width);
             for (int j = 0; j < height; ++j)
             {
@@ -20,8 +23,11 @@ namespace MatrixSort
             }
         }
 
-        static void PrintMatrix(ref int[ , ] array, int width, int height)
+        // Prints matrix to console
+        static void PrintMatrix(int[ , ] array)
         {
+            int height = array.GetLength(0);
+            int width = array.GetLength(1);
             Console.WriteLine("Sorted Matrix");
             for (int i = 0; i < height; ++i)
             {
@@ -33,6 +39,7 @@ namespace MatrixSort
             }
         }
 
+        // Swaps two given matrix columns
         static void ChangeColumns(ref int[ , ] array, int index1, int index2, int height)
         {
             for (int i = 0; i < height; ++i)
@@ -43,8 +50,10 @@ namespace MatrixSort
             }
         }
 
-        static int Partition(ref int[,] array, int leftBorder, int rightBorder, int height)
+        // quicksort separation of the array on two arrays
+        static int Partition(int[,] array, int leftBorder, int rightBorder)
         {
+            int height = array.GetLength(0);
             int i = leftBorder;
             for (int j = leftBorder; j < rightBorder; ++j)
             {
@@ -58,13 +67,14 @@ namespace MatrixSort
             return i;
         }
 
-        static void Quicksort(ref int[ , ] array, int leftBorder, int rightBorder, int height)
+        // Quicksort for first elems in the matrix columns
+        static void Quicksort(int[ , ] array, int leftBorder, int rightBorder)
         {
             if (leftBorder < rightBorder)
             {
-                int pivotAdress = Partition(ref array, leftBorder, rightBorder, height);
-                Quicksort(ref array, leftBorder, pivotAdress - 1, height);
-                Quicksort(ref array, pivotAdress + 1, rightBorder, height);
+                int pivotAdress = Partition(array, leftBorder, rightBorder);
+                Quicksort(array, leftBorder, pivotAdress - 1);
+                Quicksort(array, pivotAdress + 1, rightBorder);
             }
         }
 
@@ -74,9 +84,9 @@ namespace MatrixSort
             int width = Convert.ToInt32(Console.ReadLine());
             int height = Convert.ToInt32(Console.ReadLine());
             int[ , ] array = new int[height, width];
-            Initialization(ref array, width, height);
-            Quicksort(ref array, 0, width - 1, height);
-            PrintMatrix(ref array, width, height);
+            Initialization(array);
+            Quicksort(array, 0, width - 1);
+            PrintMatrix(array);
         }
     }
 }

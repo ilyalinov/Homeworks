@@ -4,7 +4,7 @@ namespace Quicksort
 {
     class Program
     {
-        static int Partition(ref int[] array, int leftBorder, int rightBorder)
+        static int Partition(int[] array, int leftBorder, int rightBorder)
         {
             int i = leftBorder;
             for (int j = leftBorder; j < rightBorder; ++j)
@@ -23,13 +23,13 @@ namespace Quicksort
             return i;
         }
 
-        static void Quicksort(ref int[] array, int leftBorder, int rightBorder)
+        static void Quicksort(int[] array, int leftBorder, int rightBorder)
         {
             if (leftBorder < rightBorder)
             {
-                int pivotAdress = Partition(ref array, leftBorder, rightBorder);
-                Quicksort(ref array, leftBorder, pivotAdress - 1);
-                Quicksort(ref array, pivotAdress + 1, rightBorder);
+                int pivotAdress = Partition(array, leftBorder, rightBorder);
+                Quicksort(array, leftBorder, pivotAdress - 1);
+                Quicksort(array, pivotAdress + 1, rightBorder);
             }
         }
 
@@ -43,7 +43,7 @@ namespace Quicksort
             {
                 array[i] = Convert.ToInt32(Console.ReadLine());
             }
-            Quicksort(ref array, 0, elemsNumber - 1);
+            Quicksort(array, 0, elemsNumber - 1);
             Console.WriteLine("Sorted array:");
             for (int i = 0; i < elemsNumber; ++i)
             {
