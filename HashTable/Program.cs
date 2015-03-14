@@ -4,7 +4,9 @@ namespace HashTable
 {
     class Program
     {
-        // Shows menu
+        /// <summary>
+        /// Shows menu
+        /// </summary>
         static void ShowMenu()
         {
             Console.WriteLine("1 - Insert key to the hash table");
@@ -13,6 +15,10 @@ namespace HashTable
             Console.WriteLine("Other number - exit");
         }
 
+        /// <summary>
+        /// Main method
+        /// </summary>
+        /// <param name="args"> Main array of arguments </param>
         static void Main(string[] args)
         {
             Console.WriteLine("Enter your hash table size: ");
@@ -34,7 +40,14 @@ namespace HashTable
                         break;
                     case 3:
                         string key2 = Console.ReadLine();
-                        hashTable.Search(key2);
+                        if (hashTable.Search(key2))
+                        {
+                            Console.WriteLine("Such element exists in your hash table");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Element doesn't exist");
+                        }
                         break;
                     default:
                         return;

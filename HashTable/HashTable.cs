@@ -18,29 +18,23 @@ namespace HashTable
         // Inserts an element in the hash table
         public void Insert(string key)
         {
-            ListElement newElement = new ListElement(key);
-            this.array[this.HashFunction(key)].Insert(newElement);
+            this.array[this.HashFunction(key)].Insert(key);
         }
 
         // Deletes an element form the hash table by its key
         public void Delete(string key)
         {
-            ListElement temp = this.Search(key);
-            if (temp != null)
-            {
-                this.array[this.HashFunction(key)].Delete(temp);
-                Console.WriteLine("Deleted element with key: {0}", key);
-            }
+            this.array[this.HashFunction(key)].Delete(key);
         }
 
         // Searches an element in the hash table
-        public ListElement Search(string key)
+        public bool Search(string key)
         {
             return this.array[this.HashFunction(key)].Search(key);
         }
 
         // Hash function for strings
-        public int HashFunction(string key)
+        private int HashFunction(string key)
         {
             int powerOf128 = 1;
             int result = 0;
