@@ -4,10 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace List
+namespace ListNamespace
 {
+
     class Program
     {
+        /// <summary>
+        /// Prints menu to console
+        /// </summary>
         static void ShowMenu()
         {
             Console.WriteLine("1 - Insert key to the list");
@@ -17,6 +21,11 @@ namespace List
             Console.WriteLine("5 - Print whole list to console");
             Console.WriteLine("Other number - exit");
         }
+
+        /// <summary>
+        /// Main program method
+        /// </summary>
+        /// <param name="args"> Main array of arguments </param>
         static void Main(string[] args)
         {
             List list = new List();
@@ -28,32 +37,21 @@ namespace List
                 {
                     case 1:
                         int key = Convert.ToInt32(Console.ReadLine());
-                        ListElement newElement = new ListElement(key);
-                        list.Insert(newElement);
+                        list.Insert(key);
                         break;
                     case 2:
                         int key1 = Convert.ToInt32(Console.ReadLine());
-                        ListElement listElement = list.Search(key1);
-                        if (listElement == null)
-                        {
-                            Console.WriteLine("No such element in your list");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Deleted element with key: {0}", listElement.GetKey());
-                            list.Delete(listElement);
-                        }
+                        list.Delete(key1);
                         break;
                     case 3:
                         int key2 = Convert.ToInt32(Console.ReadLine());
-                        var temp = list.Search(key2);
-                        if (temp == null)
+                        if (list.Search(key2))
                         {
-                            Console.WriteLine("No such element in your list");
+                            Console.WriteLine("This element exists in your list");
                         }
                         else
                         {
-                            Console.WriteLine("Such element exists in your list");
+                            Console.WriteLine("This element doesn't exist");
                         }
                         break;
                     case 4:
