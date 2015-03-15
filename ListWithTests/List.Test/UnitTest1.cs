@@ -7,13 +7,20 @@ namespace ListTest
     [TestClass]
     public class UnitTest1
     {
+        private List list;
+
+        [TestInitialize()]
+        public void Initialize()
+        {
+            list = new List();
+        }
+
         /// <summary>
         /// Insert test
         /// </summary>
-        [TestMethod]
+        [TestMethod()]
         public void InsertTest()
         {
-            List list = new List();
             list.Insert(10);
             Assert.IsFalse(list.IsEmpty());
         }
@@ -21,21 +28,19 @@ namespace ListTest
         /// <summary>
         /// Delete from empty list test
         /// </summary>
-        [TestMethod]
+        [TestMethod()]
         [ExpectedException(typeof(NullReferenceException))]
         public void NullReferenceExceptionDeleteTest()
         {
-            List list = new List();
             list.Delete(5);
         }
 
         /// <summary>
         /// Delete test
         /// </summary>
-        [TestMethod]
+        [TestMethod()]
         public void DeleteTest()
         {
-            List list = new List();
             list.Insert(5);
             list.Delete(5);
             Assert.IsTrue(list.IsEmpty());
@@ -44,10 +49,9 @@ namespace ListTest
         /// <summary>
         /// Search + insert test
         /// </summary> 
-        [TestMethod]
+        [TestMethod()]
         public void PushInsertTest()
         {
-            List list = new List();
             list.Insert(2);
             list.Insert(5);
             Assert.IsTrue(list.Search(2));
