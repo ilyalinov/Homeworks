@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace HashTable
 {
@@ -56,3 +56,4 @@ namespace HashTable
         }
     }
 }
+
