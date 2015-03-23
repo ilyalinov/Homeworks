@@ -11,6 +11,7 @@ namespace TreeCalculator
             string buffer = textReader.ReadLine();
             BinaryTree binaryTree = new BinaryTree(buffer);
             Console.WriteLine("Result: " + binaryTree.Count());
+            binaryTree.PrintTree();
         }
     }
 }

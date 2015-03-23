@@ -2,14 +2,23 @@
 
 namespace TreeCalculator
 {
-    class BinaryTree
+    /// <summary>
+    /// Binary tree class
+    /// </summary>
+    public class BinaryTree
     {
+        /// <summary>
+        /// Tree element class
+        /// </summary>
         private abstract class TreeElement
         {
             protected string m_Key = null;
             protected TreeElement right = null;
             protected TreeElement left = null;
 
+            /// <summary>
+            /// Get and set tree element key
+            /// </summary>
             public string Key
             {
                 get
@@ -22,6 +31,9 @@ namespace TreeCalculator
                 }
             }
 
+            /// <summary>
+            /// get and set right child
+            /// </summary>
             public TreeElement Right
             {
                 get 
@@ -34,6 +46,9 @@ namespace TreeCalculator
                 }
             }
 
+            /// <summary>
+            /// Get and set left child
+            /// </summary>
             public TreeElement Left
             {
                 get
@@ -46,19 +61,41 @@ namespace TreeCalculator
                 }
             }
 
+            /// <summary>
+            /// Construct tree element by its key
+            /// </summary>
+            /// <param name="key"></param>
             public TreeElement(string key)
             {
                 this.m_Key = key;
             }
 
+            /// <summary>
+            /// Count subtree expression
+            /// </summary>
+            /// <returns></returns>
             public abstract int Count();
 
+            /// <summary>
+            /// Print subtree in the postfix notation
+            /// </summary>
             public void Print()
             {
-                Console.Write(m_Key);
+                if (this.Left != null)
+                {
+                    this.Left.Print();
+                }
+                if (this.Right != null)
+                {
+                    this.Right.Print();
+                }
+                Console.Write(m_Key + " ");
             }
         }
 
+        /// <summary>
+        /// Operation class
+        /// </summary>
         private class Operation : TreeElement
         {
             public Operation(string key)
@@ -84,6 +121,9 @@ namespace TreeCalculator
             }
         }
 
+        /// <summary>
+        /// Operand class
+        /// </summary>
         private class Operand : TreeElement
         {
             public Operand(string key)
@@ -100,18 +140,26 @@ namespace TreeCalculator
         private TreeElement head = null;
 
         /// <summary>
-        /// Creates null binary tree
+        /// Create null binary tree
         /// </summary>
         public BinaryTree()
         {
         }
 
+        /// <summary>
+        /// Create binary tree by given expression
+        /// </summary>
+        /// <param name="expression"> given arithmetic expression </param>
         public BinaryTree(string expression)
         {
             this.head = new Operation(expression);
             this.Method(this.head);
         }
 
+        /// <summary>
+        /// Write operation in the given tree element and the operands in the children
+        /// </summary>
+        /// <param name="treeElement"> given tree element </param>
         private void Method(TreeElement treeElement)
         {
             string[] dividedExpression = ParseString.DivideOperand(treeElement.Key);
@@ -136,9 +184,22 @@ namespace TreeCalculator
             }
         }
 
+        /// <summary>
+        /// Count tree value
+        /// </summary>
+        /// <returns></returns>
         public int Count()
         {
             return this.head.Count();
+        }
+
+        /// <summary>
+        /// Print binary tree to console in the postfix notation
+        /// </summary>
+        public void PrintTree()
+        {
+            Console.WriteLine("Printed tree in the postfix notation: ");
+            this.head.Print();
         }
     }
 }

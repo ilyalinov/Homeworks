@@ -2,8 +2,13 @@
 
 namespace TreeCalculator
 {
-    static class ParseString
+    public static class ParseString
     {
+        /// <summary>
+        /// Divide expression on 2 operands and operation
+        /// </summary>
+        /// <param name="expression"> Given expression </param>
+        /// <returns> 3 strings: operation and 2 operands; Returns only given expression if it's a simple operand </returns>
         static public string[] DivideOperand(string expression)
         {
             string[] result = new string[3];
@@ -51,6 +56,11 @@ namespace TreeCalculator
             }
         }
 
+        /// <summary>
+        /// Is operand complex? 
+        /// </summary>
+        /// <param name="expression"> operand </param>
+        /// <returns> 1 - complex, 0 - simple </returns>
         static public bool IsOperandComplex(string expression)
         {
             return (expression[0] == '(');
