@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DifferentHashFunctions", "DifferentHashFunctions\DifferentHashFunctions.csproj", "{B520EC66-86D6-494B-AA72-A9479647AF25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{B732BFA2-E267-4F21-98C2-F4CDF053C598}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B520EC66-86D6-494B-AA72-A9479647AF25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B520EC66-86D6-494B-AA72-A9479647AF25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B520EC66-86D6-494B-AA72-A9479647AF25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B520EC66-86D6-494B-AA72-A9479647AF25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B732BFA2-E267-4F21-98C2-F4CDF053C598}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B732BFA2-E267-4F21-98C2-F4CDF053C598}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B732BFA2-E267-4F21-98C2-F4CDF053C598}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B732BFA2-E267-4F21-98C2-F4CDF053C598}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

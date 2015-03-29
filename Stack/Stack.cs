@@ -40,7 +40,7 @@ namespace Stack
         {
             if (this.IsEmpty())
             {
-                Console.WriteLine("Stack is empty");
+                throw new Exception("Sth is wrong");
             }
             else
             {

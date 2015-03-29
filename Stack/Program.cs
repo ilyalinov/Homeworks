@@ -33,7 +33,15 @@ namespace Stack
                         stack.Push(key);
                         break;
                     case 2:
-                        stack.Pop();
+                        try
+                        {
+                            stack.Pop();
+                        }
+                        catch (Exception e)
+                        {
+                            System.Console.WriteLine(e.Message);
+                            throw;
+                        }
                         break;
                     case 3:
                         if (stack.IsEmpty())
