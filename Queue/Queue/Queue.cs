@@ -104,7 +104,7 @@ namespace QueueNamespace
             {
                 var temp = this.head;
                 var temp1 = temp;
-                while (temp != null && temp.Priority > newElement.Priority)
+                while (temp != null && temp.Priority >= newElement.Priority)
                 {
                     temp1 = temp;
                     temp = temp.Next;

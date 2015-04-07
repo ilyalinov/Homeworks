@@ -9,11 +9,10 @@ namespace Queue.Test
     {
         public QueueClass queue = null;
 
-
         [TestInitialize]
         public void Initialize()
         {
-            QueueClass queue = new QueueClass();
+            queue = new QueueClass();
         }
 
         [TestMethod]
