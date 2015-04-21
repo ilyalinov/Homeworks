@@ -85,6 +85,7 @@ namespace WFCalculator
         private void buttonClear_Click(object sender, EventArgs e)
         {
             this.ResultTextBox.Text = "";
+            this.ResultTextBox.ZoomFactor = 3F;
         }
     }
 }
