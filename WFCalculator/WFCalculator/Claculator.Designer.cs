@@ -45,7 +45,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.buttonPlus = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.ResultTextBox = new System.Windows.Forms.RichTextBox();
+            this.userTextBox = new System.Windows.Forms.RichTextBox();
+            this.resultTextBox = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,7 +55,7 @@
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.GreenYellow;
             this.tableLayoutPanel1.ColumnCount = 4;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -99,6 +100,7 @@
             this.buttonDivision.TabIndex = 30;
             this.buttonDivision.Text = "/";
             this.buttonDivision.UseVisualStyleBackColor = true;
+            this.buttonDivision.Click += new System.EventHandler(this.button_Click);
             // 
             // buttonResult
             // 
@@ -110,6 +112,7 @@
             this.buttonResult.TabIndex = 29;
             this.buttonResult.Text = "=";
             this.buttonResult.UseVisualStyleBackColor = true;
+            this.buttonResult.Click += new System.EventHandler(this.buttonResult_Click);
             // 
             // buttonClear
             // 
@@ -133,7 +136,7 @@
             this.button0.TabIndex = 27;
             this.button0.Text = "0";
             this.button0.UseVisualStyleBackColor = true;
-            this.button0.Click += new System.EventHandler(this.button0_Click);
+            this.button0.Click += new System.EventHandler(this.button_Click);
             // 
             // buttonMultiplication
             // 
@@ -145,7 +148,7 @@
             this.buttonMultiplication.TabIndex = 26;
             this.buttonMultiplication.Text = "*";
             this.buttonMultiplication.UseVisualStyleBackColor = true;
-            this.buttonMultiplication.Click += new System.EventHandler(this.buttonMultiplication_Click);
+            this.buttonMultiplication.Click += new System.EventHandler(this.button_Click);
             // 
             // button9
             // 
@@ -157,7 +160,7 @@
             this.button9.TabIndex = 25;
             this.button9.Text = "9";
             this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
+            this.button9.Click += new System.EventHandler(this.button_Click);
             // 
             // button8
             // 
@@ -169,7 +172,7 @@
             this.button8.TabIndex = 24;
             this.button8.Text = "8";
             this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.button8.Click += new System.EventHandler(this.button_Click);
             // 
             // button7
             // 
@@ -181,7 +184,7 @@
             this.button7.TabIndex = 23;
             this.button7.Text = "7";
             this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.button7.Click += new System.EventHandler(this.button_Click);
             // 
             // buttonMinus
             // 
@@ -193,7 +196,7 @@
             this.buttonMinus.TabIndex = 22;
             this.buttonMinus.Text = "-";
             this.buttonMinus.UseVisualStyleBackColor = true;
-            this.buttonMinus.Click += new System.EventHandler(this.buttonMinus_Click);
+            this.buttonMinus.Click += new System.EventHandler(this.button_Click);
             // 
             // button6
             // 
@@ -206,7 +209,7 @@
             this.button6.TabIndex = 21;
             this.button6.Text = "6";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.button6.Click += new System.EventHandler(this.button_Click);
             // 
             // button5
             // 
@@ -218,7 +221,7 @@
             this.button5.TabIndex = 20;
             this.button5.Text = "5";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button5.Click += new System.EventHandler(this.button_Click);
             // 
             // button4
             // 
@@ -230,19 +233,20 @@
             this.button4.TabIndex = 19;
             this.button4.Text = "4";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.Click += new System.EventHandler(this.button_Click);
             // 
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.button1.Location = new System.Drawing.Point(3, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(115, 71);
             this.button1.TabIndex = 18;
             this.button1.Text = "1";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.button1.Click += new System.EventHandler(this.button_Click);
             // 
             // button2
             // 
@@ -254,7 +258,7 @@
             this.button2.TabIndex = 17;
             this.button2.Text = "2";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.button_Click);
             // 
             // buttonPlus
             // 
@@ -266,7 +270,7 @@
             this.buttonPlus.TabIndex = 16;
             this.buttonPlus.Text = "+";
             this.buttonPlus.UseVisualStyleBackColor = true;
-            this.buttonPlus.Click += new System.EventHandler(this.buttonPlus_Click);
+            this.buttonPlus.Click += new System.EventHandler(this.button_Click);
             // 
             // button3
             // 
@@ -278,30 +282,44 @@
             this.button3.TabIndex = 2;
             this.button3.Text = "3";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.button_Click);
             // 
-            // ResultTextBox
+            // userTextBox
             // 
-            this.ResultTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.ResultTextBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ResultTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.ResultTextBox.Location = new System.Drawing.Point(0, 0);
-            this.ResultTextBox.Name = "ResultTextBox";
-            this.ResultTextBox.ReadOnly = true;
-            this.ResultTextBox.Size = new System.Drawing.Size(484, 107);
-            this.ResultTextBox.TabIndex = 1;
-            this.ResultTextBox.Text = "";
-            this.ResultTextBox.ZoomFactor = 3F;
+            this.userTextBox.BackColor = System.Drawing.Color.GreenYellow;
+            this.userTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.userTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.userTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.userTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.userTextBox.Location = new System.Drawing.Point(0, 0);
+            this.userTextBox.Name = "userTextBox";
+            this.userTextBox.ReadOnly = true;
+            this.userTextBox.Size = new System.Drawing.Size(484, 48);
+            this.userTextBox.TabIndex = 1;
+            this.userTextBox.Text = "";
+            // 
+            // resultTextBox
+            // 
+            this.resultTextBox.BackColor = System.Drawing.Color.GreenYellow;
+            this.resultTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.resultTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.resultTextBox.Location = new System.Drawing.Point(0, 56);
+            this.resultTextBox.Name = "resultTextBox";
+            this.resultTextBox.ReadOnly = true;
+            this.resultTextBox.Size = new System.Drawing.Size(484, 48);
+            this.resultTextBox.TabIndex = 2;
+            this.resultTextBox.Text = "";
             // 
             // Calculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = System.Drawing.Color.GreenYellow;
             this.ClientSize = new System.Drawing.Size(484, 421);
-            this.Controls.Add(this.ResultTextBox);
+            this.Controls.Add(this.resultTextBox);
+            this.Controls.Add(this.userTextBox);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.MinimumSize = new System.Drawing.Size(300, 300);
+            this.MinimumSize = new System.Drawing.Size(300, 400);
             this.Name = "Calculator";
             this.Text = "Calculator";
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -312,7 +330,10 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.RichTextBox ResultTextBox;
+        /// <summary>
+        /// text box with user arithmetic expression
+        /// </summary>
+        private System.Windows.Forms.RichTextBox userTextBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button buttonDivision;
         private System.Windows.Forms.Button buttonResult;
@@ -329,9 +350,10 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button buttonPlus;
         private System.Windows.Forms.Button button3;
-
-
-
+        /// <summary>
+        /// text box with arithmetic expression result
+        /// </summary>
+        private System.Windows.Forms.RichTextBox resultTextBox;
     }
 }
 

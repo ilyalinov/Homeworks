@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WFCalculator
@@ -17,75 +10,111 @@ namespace WFCalculator
             InitializeComponent();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private int prevValue = 0;
+        private int currentValue = 0;
+        private string valueBuffer = "";
+        private Operation prevOperation = new Plus();
+
+        /// <summary>
+        /// Print button text to user text box
+        /// </summary>
+        /// <param name="button"></param>
+        private void PrintText(Button button)
         {
-            this.ResultTextBox.Text += button1.Text;
+            this.userTextBox.Text += button.Text;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Calculate simple arithmetic expression and print the result to result text box
+        /// </summary>
+        /// <param name="operation"> given arithmetic operation </param>
+        private void Calculate(Operation operation)
         {
-            this.ResultTextBox.Text += button2.Text;
+            try
+            {
+                prevValue = operation.Count(prevValue, currentValue);
+                this.resultTextBox.Text = Convert.ToString(prevValue);
+            }
+            catch (NullReferenceException e)
+            {
+                this.resultTextBox.Text = e.Message;
+            }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Click handler for buttons 0-9 and +, -, *, /
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_Click(object sender, EventArgs e)
         {
-            this.ResultTextBox.Text += button3.Text;
+            Button button = sender as Button;
+            if (button != null)
+            {
+                this.PrintText(button);
+            }
+            switch (button.Text)
+            {
+                case ("+"):
+                    currentValue = Convert.ToInt32(valueBuffer);
+                    Calculate(prevOperation);
+                    prevOperation = new Plus();
+                    valueBuffer = "";
+                    break;
+                case ("-"):
+                    currentValue = Convert.ToInt32(valueBuffer);
+                    Calculate(prevOperation);
+                    prevOperation = new Minus();
+                    valueBuffer = "";
+                    break;
+                case ("/"):
+                    currentValue = Convert.ToInt32(valueBuffer);
+                    Calculate(prevOperation);
+                    prevOperation = new Division();
+                    valueBuffer = "";
+                    break;
+                case("*"):
+                    currentValue = Convert.ToInt32(valueBuffer);
+                    Calculate(prevOperation);
+                    prevOperation = new Multiplication();
+                    valueBuffer = "";
+                    break;
+                default:
+                    valueBuffer += button.Text;
+                    break;
+
+
+            }
         }
 
-        private void buttonPlus_Click(object sender, EventArgs e)
-        {
-            this.ResultTextBox.Text += buttonPlus.Text;
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            this.ResultTextBox.Text += button4.Text;
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            this.ResultTextBox.Text += button5.Text;
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            this.ResultTextBox.Text += button6.Text;
-        }
-
-        private void buttonMinus_Click(object sender, EventArgs e)
-        {
-            this.ResultTextBox.Text += buttonMinus.Text;
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            this.ResultTextBox.Text += button7.Text;
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            this.ResultTextBox.Text += button8.Text;
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-            this.ResultTextBox.Text += button9.Text;
-        }
-
-        private void buttonMultiplication_Click(object sender, EventArgs e)
-        {
-            this.ResultTextBox.Text += buttonMultiplication.Text;
-        }
-
-        private void button0_Click(object sender, EventArgs e)
-        {
-            this.ResultTextBox.Text += button0.Text;
-        }
-
+        /// <summary>
+        /// Clear result and user text boxes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonClear_Click(object sender, EventArgs e)
         {
-            this.ResultTextBox.Text = "";
-            this.ResultTextBox.ZoomFactor = 3F;
+            this.userTextBox.Text = "";
+            this.resultTextBox.Text = "";
+            prevValue = 0;
+            currentValue = 0;
+            valueBuffer = "";
+            prevOperation = new Plus();
+        }
+
+        /// <summary>
+        /// Return result of complex arithmetic expression
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonResult_Click(object sender, EventArgs e)
+        {
+            currentValue = Convert.ToInt32(valueBuffer);
+            Calculate(prevOperation);
+            prevValue = 0;
+            currentValue = 0;
+            valueBuffer = "";
+            prevOperation = new Plus();
         }
     }
 }

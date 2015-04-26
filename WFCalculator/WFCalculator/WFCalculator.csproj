@@ -50,6 +50,7 @@
     <Compile Include="Claculator.Designer.cs">
       <DependentUpon>Claculator.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Claculator.resx">
