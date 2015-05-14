@@ -5,7 +5,7 @@ using TreeCalculator;
 namespace TreeCalculator.Test
 {
     [TestClass]
-    public class UnitTest1
+    public class TreeCalculatorTest
     {
         string expression = null;
         BinaryTree binaryTree = null;
@@ -32,7 +32,7 @@ namespace TreeCalculator.Test
 
         [TestMethod]
         [ExpectedException(typeof(System.DivideByZeroException))]
-        public void NullReferenceEXceptionTest()
+        public void NullReferenceExceptionTest()
         {
             expression = "( / 2 0 )";
             binaryTree = new BinaryTree(expression);

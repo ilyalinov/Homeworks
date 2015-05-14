@@ -12,62 +12,8 @@ namespace TreeCalculator
         /// </summary>
         private abstract class TreeElement
         {
-            protected string m_Key = null;
-            protected TreeElement right = null;
-            protected TreeElement left = null;
-
-            /// <summary>
-            /// Get and set tree element key
-            /// </summary>
-            public string Key
+            public TreeElement()
             {
-                get
-                {
-                    return this.m_Key;
-                }
-                set
-                {
-                    this.m_Key = value;
-                }
-            }
-
-            /// <summary>
-            /// get and set right child
-            /// </summary>
-            public TreeElement Right
-            {
-                get 
-                {
-                    return this.right;
-                }
-                set
-                {
-                    this.right = value;
-                }
-            }
-
-            /// <summary>
-            /// Get and set left child
-            /// </summary>
-            public TreeElement Left
-            {
-                get
-                {
-                    return this.left;
-                }
-                set
-                {
-                    this.left = value;
-                }
-            }
-
-            /// <summary>
-            /// Construct tree element by its key
-            /// </summary>
-            /// <param name="key"></param>
-            public TreeElement(string key)
-            {
-                this.m_Key = key;
             }
 
             /// <summary>
@@ -79,45 +25,112 @@ namespace TreeCalculator
             /// <summary>
             /// Print subtree in the postfix notation
             /// </summary>
-            public void Print()
-            {
-                if (this.Left != null)
-                {
-                    this.Left.Print();
-                }
-                if (this.Right != null)
-                {
-                    this.Right.Print();
-                }
-                Console.Write(m_Key + " ");
-            }
+            public abstract void Print();
         }
 
         /// <summary>
         /// Operation class
         /// </summary>
-        private class Operation : TreeElement
+        private abstract class Operation : TreeElement
         {
-            public Operation(string key)
-                : base(key)
+            public TreeElement Right { get; set; }
+            public TreeElement Left { get; set; }
+
+            public Operation()
+            {
+            }
+
+            //public override int Count()
+            //{
+            //    switch (this.Key)
+            //    {
+            //        case "+":
+            //            return this.Left.Count() + this.Right.Count();
+            //        case "-":
+            //            return this.Left.Count() - this.Right.Count();
+            //        case "*":
+            //            return this.Left.Count() * this.Right.Count();
+            //        case "/":
+            //            return this.Left.Count() / this.Right.Count();
+            //        default:
+            //            throw new Exception("Something is very wrong");
+            //    }
+            //}
+        }
+
+        private class Plus : Operation
+        {
+            public Plus() : base()
             {
             }
 
             public override int Count()
             {
-                switch (this.m_Key)
-                {
-                    case "+":
-                        return this.left.Count() + this.right.Count();
-                    case "-":
-                        return this.left.Count() - this.right.Count();
-                    case "*":
-                        return this.left.Count() * this.right.Count();
-                    case "/":
-                        return this.left.Count() / this.right.Count();
-                    default:
-                        throw new Exception("Something is very wrong");
-                }
+                return this.Left.Count() + this.Right.Count(); 
+            }
+
+            public override void Print()
+            {
+                this.Left.Print();
+                this.Right.Print();
+                Console.WriteLine("+ ");
+            }
+        }
+
+        private class Minus : Operation
+        {
+            public Minus() : base()
+            {
+            }
+
+            public override int Count()
+            {
+                return this.Left.Count() - this.Right.Count();
+            }
+
+            public override void Print()
+            {
+                this.Left.Print();
+                this.Right.Print();
+                Console.WriteLine("- ");
+            }
+        }
+
+        private class Multiplication : Operation
+        {
+            public Multiplication(): base()
+            {
+            }
+
+            public override int Count()
+            {
+                return this.Left.Count() * this.Right.Count();
+            }
+
+            public override void Print()
+            {
+                this.Left.Print();
+                this.Right.Print();
+                Console.WriteLine("* ");
+            }
+        }
+
+        private class Division : Operation
+        {
+            public Division() : base()
+            {
+            }
+
+            public override int Count()
+            {
+                return this.Left.Count() / this.Right.Count();
+            }
+
+            public override void Print()
+            {
+                this.Left.Print();
+                this.Right.Print();
+                Console.WriteLine("/ ");
             }
         }
 
@@ -126,14 +139,21 @@ namespace TreeCalculator
         /// </summary>
         private class Operand : TreeElement
         {
+            public string Key { get; set; }
+
             public Operand(string key)
-                : base(key)
             {
+                this.Key = key;
+            }
+
+            public override void Print()
+            {
+                Console.WriteLine("{0} ", this.Key);
             }
 
             public override int Count()
             {
-                return Convert.ToInt32(this.m_Key);
+                return Convert.ToInt32(this.Key);
             }
         }
 
@@ -152,36 +172,66 @@ namespace TreeCalculator
         /// <param name="expression"> given arithmetic expression </param>
         public BinaryTree(string expression)
         {
-            this.head = new Operation(expression);
-            this.Method(this.head);
+            this.head = new Multiplication();
+            this.CreateTree(expression, this.head);
         }
 
         /// <summary>
         /// Write operation in the given tree element and the operands in the children
         /// </summary>
         /// <param name="treeElement"> given tree element </param>
-        private void Method(TreeElement treeElement)
+        private void CreateTree(string expression, TreeElement treeElement)
         {
-            string[] dividedExpression = ParseString.DivideOperand(treeElement.Key);
-            treeElement.Key = dividedExpression[0];
-            if (ParseString.IsOperandComplex(dividedExpression[1]))
+            if (ParseString.IsOperandComplex(expression))
             {
-                treeElement.Left = new Operation(dividedExpression[1]);
-                this.Method(treeElement.Left);
+                string[] dividedExpression = ParseString.DivideOperand(expression);
+                switch (dividedExpression[0])
+                {
+                    case "+":
+                        treeElement = new Plus();
+                        break;
+                    case "-":
+                        treeElement = new Minus();
+                        break;
+                    case "*":
+                        treeElement = new Multiplication();
+                        break;
+                    case "/":
+                        treeElement = new Division();
+                        break;
+                    default:
+                        throw new Exception("Something is very wrong");
+                }
+                var temp = treeElement as Operation;
+                this.CreateTree(dividedExpression[1], temp.Left);
+                this.CreateTree(dividedExpression[2], temp.Right);
             }
             else
             {
-                treeElement.Left = new Operand(dividedExpression[1]);
+                treeElement = new Operand(expression);
             }
-            if (ParseString.IsOperandComplex(dividedExpression[2]))
-            {
-                treeElement.Right = new Operation(dividedExpression[2]);
-                this.Method(treeElement.Right);
-            }
-            else
-            {
-                treeElement.Right = new Operand(dividedExpression[2]);
-            }
+
+
+            //string[] dividedExpression = ParseString.DivideOperand(treeElement.Key);
+            //treeElement.Key = dividedExpression[0];
+            //if (ParseString.IsOperandComplex(dividedExpression[1]))
+            //{
+            //    treeElement.Left = new Operation(dividedExpression[1]);
+            //    this.CreateTree(treeElement.Left);
+            //}
+            //else
+            //{
+            //    treeElement.Left = new Operand(dividedExpression[1]);
+            //}
+            //if (ParseString.IsOperandComplex(dividedExpression[2]))
+            //{
+            //    treeElement.Right = new Operation(dividedExpression[2]);
+            //    this.CreateTree(treeElement.Right);
+            //}
+            //else
+            //{
+            //    treeElement.Right = new Operand(dividedExpression[2]);
+            //}
         }
 
         /// <summary>
