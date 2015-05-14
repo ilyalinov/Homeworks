@@ -10,17 +10,11 @@ namespace CursorControlNamespace
     {
         public void OnLeft()
         {
-            try
+            if (Console.CursorLeft == 0)
             {
-                Console.CursorLeft -= 1;
+                return;
             }
-            catch (ArgumentOutOfRangeException)
-            {
-                Console.Clear();
-                Console.WriteLine("Can't move further (sleep for 3 seconds, then cleaning the console)");
-                Thread.Sleep(3000);
-                Console.Clear();
-            }
+            Console.CursorLeft -= 1;
         }
 
         /// <summary>
@@ -28,17 +22,11 @@ namespace CursorControlNamespace
         /// </summary>
         public void OnRight()
         {
-            try
+            if (Console.CursorLeft >= Console.WindowWidth - 1)
             {
-                Console.CursorLeft += 1;
+                return;
             }
-            catch (ArgumentOutOfRangeException)
-            {
-                Console.Clear();
-                Console.WriteLine("Can't move further (sleep for 3 seconds, then cleaning the console)");
-                Thread.Sleep(3000);
-                Console.Clear();
-            }
+            Console.CursorLeft += 1;
         }
 
         /// <summary>
@@ -46,17 +34,11 @@ namespace CursorControlNamespace
         /// </summary>
         public void Up()
         {
-            try
+            if (Console.CursorTop <= 0)
             {
-                Console.CursorTop -= 1;
+                return;
             }
-            catch (ArgumentOutOfRangeException)
-            {
-                Console.Clear();
-                Console.WriteLine("Can't move further (sleep for 3 seconds, then cleaning the console)");
-                Thread.Sleep(3000);
-                Console.Clear();
-            }
+            Console.CursorTop -= 1;
         }
 
         /// <summary>
@@ -64,17 +46,11 @@ namespace CursorControlNamespace
         /// </summary>
         public void Down()
         {
-            try
+            if (Console.CursorTop >= Console.WindowHeight - 1)
             {
-                Console.CursorTop += 1;
+                return;
             }
-            catch (ArgumentOutOfRangeException)
-            {
-                Console.Clear();
-                Console.WriteLine("Can't move further (sleep for 3 seconds, then cleaning the console)");
-                Thread.Sleep(3000);
-                Console.Clear();
-            }
+            Console.CursorTop += 1;
         }
     }
 }
