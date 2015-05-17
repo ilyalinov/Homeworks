@@ -8,13 +8,11 @@ namespace ListFold.Test
     public class ListFoldTest
     {
         public List list = null;
-        public FoldClass.UpdateValue updateValue = null;
 
         [TestInitialize]
         public void Initialize()
         {
             list = new List();
-            updateValue = new FoldClass.UpdateValue(FoldClass.Sum);
             for (int i = 0; i <= 10; i++)
             {
                 list.Insert(i);
@@ -27,7 +25,7 @@ namespace ListFold.Test
         [TestMethod]
         public void FoldTest()
         {
-            Assert.AreEqual(FoldClass.Fold(list, 0, updateValue), 10 * 11 / 2);
+            Assert.AreEqual(FoldClass.Fold(list, 0, (foldedValue, elementKey) => (foldedValue + elementKey)), 10 * 11 / 2);
         }
     }
 }

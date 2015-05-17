@@ -12,21 +12,13 @@ namespace ListFold
     public static class FoldClass
     {
         /// <summary>
-        /// delegate for function that updates folded value
-        /// </summary>
-        /// <param name="foldedValue"> folded value </param>
-        /// <param name="key"> list element key </param>
-        /// <returns> updated value </returns>
-        public delegate int UpdateValue(int foldedValue, int key);
-
-        /// <summary>
-        /// 
+        /// list fold function
         /// </summary>
         /// <param name="list"></param>
         /// <param name="initialValue"></param>
         /// <param name="updateValue"></param>
         /// <returns></returns>
-        public static int Fold(List list, int initialValue, UpdateValue updateValue)
+        public static int Fold(List list, int initialValue, Func<int, int, int> updateValue)
         {
             var temp = list.GetHead;
             int foldedValue = initialValue;
