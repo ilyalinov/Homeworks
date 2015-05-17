@@ -5,7 +5,7 @@ using TreeCalculator;
 namespace TreeCalculator.Test
 {
     [TestClass]
-    public class UnitTest1
+    public class TreeCalculatorTest
     {
         string expression = null;
         BinaryTree binaryTree = null;
