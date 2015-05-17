@@ -14,13 +14,15 @@ namespace ListMap.Test
         {
             list = new List();
             list.Insert(2);
+            list.Insert(3);
         }
 
         [TestMethod]
         public void TestMap()
         {
-            list = MapClass.Map(list, new MapClass.Modifier(MapClass.ListElementModifier));
-            Assert.IsTrue(list.Search(2 * 2));
+            list = MapClass.Map(list, x => (x + 2));
+            Assert.IsTrue(list.Search(2 + 2));
+            Assert.IsTrue(list.Search(3 + 2));
         }
     }
 }

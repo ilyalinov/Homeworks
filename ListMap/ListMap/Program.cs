@@ -10,11 +10,6 @@ namespace ListMap
     {
         static void Main(string[] args)
         {
-            List list = new List();
-            list.Insert(2);
-            var modifier = new MapClass.Modifier(MapClass.ListElementModifier);
-            MapClass.Map(list, modifier);
-            list.Print();
         }
     }
 }
