@@ -10,11 +10,6 @@ namespace ListFilter
     {
         static void Main(string[] args)
         {
-            List list = new List();
-            list.Insert(1);
-            var modifier = new FilterClass.Modifier(FilterClass.ListElementFilter);
-            list = FilterClass.Filter(list, modifier);
-            list.Print();
         }
     }
 }

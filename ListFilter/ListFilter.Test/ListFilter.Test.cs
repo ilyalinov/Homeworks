@@ -23,8 +23,8 @@ namespace ListFilter.Test
         [TestMethod]
         public void FilterTest()
         {
-            var modifier = new FilterClass.Modifier(FilterClass.ListElementFilter);
-            list = FilterClass.Filter(list, modifier);
+            
+            list = FilterClass.Filter(list, x => (x % 2 == 0));
             Assert.IsTrue(list.Search(2));
             Assert.IsFalse(list.Search(3));
         }
