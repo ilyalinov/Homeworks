@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{852C8BDF-DB12-46B1-9F23-6E1E6AF8CFB1}</ProjectGuid>
+    <ProjectGuid>{1DD2E20D-7259-49EA-84D5-6E28E1811A89}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TreeCalculator.Test</RootNamespace>
-    <AssemblyName>TreeCalculator.Test</AssemblyName>
+    <RootNamespace>CursorConsole.Test</RootNamespace>
+    <AssemblyName>CursorConsole.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -50,13 +50,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="TreeCalculatorTest.cs" />
+    <Compile Include="CursorConsole.Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TreeCalculator\TreeCalculator.csproj">
-      <Project>{ca8501ec-d8d1-4f45-b28c-0607a98f060b}</Project>
-      <Name>TreeCalculator</Name>
+    <ProjectReference Include="..\CursorControl\CursorControl.csproj">
+      <Project>{69378ce1-1f8c-4cc8-b582-923510ad2f59}</Project>
+      <Name>CursorControl</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

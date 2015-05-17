@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{852C8BDF-DB12-46B1-9F23-6E1E6AF8CFB1}</ProjectGuid>
+    <ProjectGuid>{B9B2FED6-5217-4418-A3F0-49AD5E88837C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TreeCalculator.Test</RootNamespace>
-    <AssemblyName>TreeCalculator.Test</AssemblyName>
+    <RootNamespace>ListMap.Test</RootNamespace>
+    <AssemblyName>ListMap.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -50,13 +50,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="TreeCalculatorTest.cs" />
+    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TreeCalculator\TreeCalculator.csproj">
-      <Project>{ca8501ec-d8d1-4f45-b28c-0607a98f060b}</Project>
-      <Name>TreeCalculator</Name>
+    <ProjectReference Include="..\ListMap\ListMap.csproj">
+      <Project>{146f5f64-fd92-44ea-9682-c15d5a07652b}</Project>
+      <Name>ListMap</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

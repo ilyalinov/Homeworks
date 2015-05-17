@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{852C8BDF-DB12-46B1-9F23-6E1E6AF8CFB1}</ProjectGuid>
+    <ProjectGuid>{FD43E821-1F3E-4B8E-BE7F-A818BF7FCC5C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TreeCalculator.Test</RootNamespace>
-    <AssemblyName>TreeCalculator.Test</AssemblyName>
+    <RootNamespace>ListFold.Test</RootNamespace>
+    <AssemblyName>ListFold.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -50,13 +50,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="TreeCalculatorTest.cs" />
+    <Compile Include="ListFold.Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TreeCalculator\TreeCalculator.csproj">
-      <Project>{ca8501ec-d8d1-4f45-b28c-0607a98f060b}</Project>
-      <Name>TreeCalculator</Name>
+    <ProjectReference Include="..\ListFold\ListFold.csproj">
+      <Project>{d1e0fb30-931e-4c06-856a-b07f3f85bd70}</Project>
+      <Name>ListFold</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

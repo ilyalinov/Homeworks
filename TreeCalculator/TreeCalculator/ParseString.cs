@@ -5,6 +5,21 @@ namespace TreeCalculator
     public static class ParseString
     {
         /// <summary>
+        /// Ignore all spaces and returns pointer for the next non space character
+        /// </summary>
+        /// <param name="buffer"> given string </param>
+        /// <param name="pointer"> сurrent string element pointer </param>
+        /// <returns> pointer for the next non space character </returns>
+        static private int IgnoreSpaces(string buffer, int pointer)
+        {
+            while (buffer[pointer] == ' ' || buffer[pointer] == '\t')
+            {
+                pointer++;
+            }
+            return pointer;
+        }
+
+        /// <summary>
         /// Divide expression on 2 operands and operation
         /// </summary>
         /// <param name="expression"> Given expression </param>
@@ -14,37 +29,41 @@ namespace TreeCalculator
             string[] result = new string[3];
             if (IsOperandComplex(expression))
             {
-                result[0] += expression[2];
+                int stringPointer = 1;
+                stringPointer = IgnoreSpaces(expression, stringPointer);
+                result[0] += expression[stringPointer];
                 int bracketsCounter = 0;
-                int i = 4;
-                while (bracketsCounter != 0 || expression[i] != ' ')
+                stringPointer = IgnoreSpaces(expression, stringPointer + 1);
+
+                while (bracketsCounter != 0 || expression[stringPointer] != ' ')
                 {
-                    if (expression[i] == '(')
+                    if (expression[stringPointer] == '(')
                     {
                         bracketsCounter++;
                     }
-                    else if(expression[i] == ')')
+                    else if (expression[stringPointer] == ')')
                     {
                         bracketsCounter--;
                     }
-                    result[1] += expression[i];
-                    i++;
+                    result[1] += expression[stringPointer];
+                    stringPointer++;
                 }
 
-                i++;
+                stringPointer = IgnoreSpaces(expression, stringPointer + 1);
+                bracketsCounter = 0;
 
-                while (bracketsCounter != 0 || expression[i] != ' ')
+                while (bracketsCounter != 0 || expression[stringPointer] != ' ')
                 {
-                    if (expression[i] == '(')
+                    if (expression[stringPointer] == '(')
                     {
                         bracketsCounter++;
                     }
-                    else if (expression[i] == ')')
+                    else if (expression[stringPointer] == ')')
                     {
                         bracketsCounter--;
                     }
-                    result[2] += expression[i];
-                    i++;
+                    result[2] += expression[stringPointer];
+                    stringPointer++;
                 }
 
                 return result;
