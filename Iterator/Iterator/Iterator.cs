@@ -14,6 +14,7 @@ namespace IteratorNamespace
         /// <param name="tree"> given bunary tree </param>
         public IteratorClass(BinaryTree tree)
         {
+            this.nodeList = new List<TreeElement>();
             this.i = 0;
             this.Current = tree.Head();
             this.nodeList.Add(this.Current);
