@@ -10,7 +10,7 @@ namespace Generics
     /// <summary>
     /// List class
     /// </summary>
-    public class List<ElementType> : IEnumerable<ElementType>
+    public class List<ElementType> : IEnumerable
     {
         /// <summary>
         /// Creates empty list
@@ -176,21 +176,23 @@ namespace Generics
         /// List enumerator
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public class ListEnumerator<T> : IEnumerator<T>
+        public class ListEnumerator : IEnumerator
         {
             private int position = -1;
-            private List<T> list;
+            private List<ElementType> list;
+            private ListElement currentElement;
 
-            public ListEnumerator(List<T> list)
+            public ListEnumerator(List<ElementType> list)
             {
                 this.list = list;
+                currentElement = null;
             }
 
-            public T Current
+            public object Current
             {
                 get
                 {
-                    return this.list.ElementKeyByPosition(position);
+                    return currentElement.Key;
                 }
             }
 
@@ -202,6 +204,14 @@ namespace Generics
             public bool MoveNext()
             {
                 position++;
+                if (currentElement == null)
+                {
+                    currentElement = list.head;
+                }
+                else
+                {
+                    currentElement = currentElement.Next;
+                }
                 return position < list.Size();
             }
 
@@ -215,22 +225,14 @@ namespace Generics
                 get { return Current; }
             }
         }
+
         /// <summary>
         /// IEnumerable inerface implementation
         /// </summary>
         /// <returns></returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return new ListEnumerator<ElementType>(this) as IEnumerator;
-        }
-
-        /// <summary>
-        /// IEnumerable inerface implementation
-        /// </summary>
-        /// <returns></returns>
-        IEnumerator<ElementType> IEnumerable<ElementType>.GetEnumerator()
-        {
-            return new ListEnumerator<ElementType>(this);
+            return new ListEnumerator(this) as IEnumerator;
         }
     }
 }
