@@ -175,7 +175,6 @@ namespace Generics
         /// <summary>
         /// List enumerator
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         public class ListEnumerator : IEnumerator
         {
             private int position = -1;
