@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Generics
 {
     // Class for stack data structure
-    class Stack<T>
+    public class Stack<T>
     {
         private StackElement head;
         private int numberOfElems;
@@ -49,7 +49,7 @@ namespace Generics
         /// <summary>
         /// Delete element from the stack
         /// </summary>
-        public void Pop()
+        public T Pop()
         {
             if (this.IsEmpty())
             {
@@ -58,8 +58,10 @@ namespace Generics
             else
             {
                 Console.WriteLine("Deleted element with key: {0}", this.head.Key);
+                var key = this.head.Key;
                 this.head = this.head.Next;
                 numberOfElems--;
+                return key;
             }
         }
 

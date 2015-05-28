@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace Generics
     /// <summary>
     /// List class
     /// </summary>
-    class List<T>
+    public class List<ElementType> : IEnumerable<ElementType>
     {
         /// <summary>
         /// Creates empty list
@@ -19,18 +20,39 @@ namespace Generics
         }
 
         /// <summary>
+        /// returns element key by its position
+        /// </summary>
+        /// <param name="position"> element position </param>
+        /// <returns> element key </returns>
+        public ElementType ElementKeyByPosition(int position)
+        {
+            if (numberOfElems <= position || position < 0)
+            {
+                throw new Exception("Smth is wrong");
+            }
+            int index = 0;
+            var temp = this.head;
+            while (index < position)
+            {
+                temp = temp.Next;
+                index += 1;
+            }
+            return temp.Key;
+        }
+
+        /// <summary>
         /// Insert given key to the list
         /// </summary>
         /// <param name="key"> Inserted key </param>
-        public void Insert(T key)
+        public void Insert(ElementType key)
         {
             var newElement = new ListElement(key);
-            newElement.Next = this.Head;
-            if (this.Head != null)
+            newElement.Next = this.head;
+            if (this.head != null)
             {
-                this.Head.Prev = newElement;
+                this.head.Prev = newElement;
             }
-            this.Head = newElement;
+            this.head = newElement;
             this.numberOfElems++;
         }
 
@@ -38,7 +60,7 @@ namespace Generics
         /// Deletes element by its key
         /// </summary>
         /// <param name="key"> Deleted key </param>
-        public void Delete(T key)
+        public void Delete(ElementType key)
         {
             var listElement = this.SearchListElement(key);
             if (listElement != null)
@@ -46,7 +68,7 @@ namespace Generics
                 Console.WriteLine("Deleted element with key: " + listElement.Key);
                 if (listElement.Prev == null)
                 {
-                    this.Head = listElement.Next;
+                    this.head = listElement.Next;
                 }
                 else
                 {
@@ -78,9 +100,9 @@ namespace Generics
         /// </summary>
         /// <param name="key">  key for search </param>
         /// <returns> 1 - contains, 0 - not contains </returns>
-        public bool Search(T key)
+        public bool Search(ElementType key)
         {
-            ListElement temp = this.Head;
+            ListElement temp = this.head;
             while (temp != null && !temp.Key.Equals(key))
             {
                 temp = temp.Next;
@@ -93,9 +115,9 @@ namespace Generics
         /// </summary>
         /// <param name="key"> Key for search </param>
         /// <returns></returns>
-        private ListElement SearchListElement(T key)
+        private ListElement SearchListElement(ElementType key)
         {
-            ListElement temp = this.Head;
+            ListElement temp = this.head;
             while (temp != null && !temp.Key.Equals(key))
             {
                 temp = temp.Next;
@@ -113,7 +135,7 @@ namespace Generics
                 Console.WriteLine("Your list is empty");
                 return;
             }
-            ListElement temp = this.Head;
+            ListElement temp = this.head;
             Console.WriteLine("Your list: ");
             while (temp != null)
             {
@@ -137,17 +159,78 @@ namespace Generics
         /// </summary>
         private class ListElement
         {
-            public ListElement(T key)
+            public ListElement(ElementType key)
             {
                 this.Key = key;
             }
 
-            public T Key { get; set; }
+            public ElementType Key { get; set; }
             public ListElement Next { get; set; }
             public ListElement Prev { get; set; }
         }
 
-        private ListElement Head = null;
+        private ListElement head = null;
         private int numberOfElems = 0;
+
+        /// <summary>
+        /// List enumerator
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        public class ListEnumerator<T> : IEnumerator<T>
+        {
+            private int position = -1;
+            private List<T> list;
+
+            public ListEnumerator(List<T> list)
+            {
+                this.list = list;
+            }
+
+            public T Current
+            {
+                get
+                {
+                    return this.list.ElementKeyByPosition(position);
+                }
+            }
+
+            public void Dispose()
+            {
+                this.list = null;
+            }
+
+            public bool MoveNext()
+            {
+                position++;
+                return position < list.Size();
+            }
+
+            public void Reset()
+            {
+                position = -1;
+            }
+
+            object IEnumerator.Current
+            {
+                get { return Current; }
+            }
+        }
+        /// <summary>
+        /// IEnumerable inerface implementation
+        /// </summary>
+        /// <returns></returns>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return new ListEnumerator<ElementType>(this) as IEnumerator;
+        }
+
+        /// <summary>
+        /// IEnumerable inerface implementation
+        /// </summary>
+        /// <returns></returns>
+        IEnumerator<ElementType> IEnumerable<ElementType>.GetEnumerator()
+        {
+            return new ListEnumerator<ElementType>(this);
+        }
     }
 }
