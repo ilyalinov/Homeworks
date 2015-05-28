@@ -22,7 +22,7 @@ namespace StackCalculatorNamespace
             /// <param name="number"> stack element key </param>
             public StackElement(int number)
             {
-                this.m_Key = number;
+                this.Key = number;
             }
 
             /// <summary>
@@ -43,19 +43,8 @@ namespace StackCalculatorNamespace
             /// <summary>
             /// Get + set stack element key
             /// </summary>
-            public int Key
-            {
-                get
-                {
-                    return (m_Key);
-                }
-                set
-                {
-                    m_Key = value;
-                }
-            }
+            public int Key { get; set; }
 
-            private int m_Key = 0;
             private StackElement m_Next = null;
         }
 
