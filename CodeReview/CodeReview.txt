@@ -11,14 +11,14 @@ SdfRenderer.cpp
 Строку стоит принимать в метод по ссылке (строки 35, 400, 717)
 Копипаст
 while (d_cont[j] != ' ')
-					{
-						s1.append(d_cont[j]);
-						++j;
-					}
+	{
+		s1.append(d_cont[j])
+		++j;
+	}
 
-					end_point.setX(s1.toFloat() * current_size_x / first_size_x + mStartX);
-					s1.clear();
-					++j;
+end_point.setX(s1.toFloat() * current_size_x / first_size_x + mStartX);
+s1.clear();
+++j;
 вынести в отдельную функцию.
 У if-ов не хватает фигурных скобок (строка 620)
 
