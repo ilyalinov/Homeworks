@@ -10,6 +10,50 @@ namespace WFCalculator
             InitializeComponent();
         }
 
+        private void BlockOperands()
+        {
+            this.button0.Enabled = false;
+            this.button1.Enabled = false;
+            this.button2.Enabled = false;
+            this.button3.Enabled = false;
+            this.button4.Enabled = false;
+            this.button5.Enabled = false;
+            this.button6.Enabled = false;
+            this.button7.Enabled = false;
+            this.button8.Enabled = false;
+            this.button9.Enabled = false;
+        }
+
+        private void UnBlockOperands()
+        {
+            this.button0.Enabled = true;
+            this.button1.Enabled = true;
+            this.button2.Enabled = true;
+            this.button3.Enabled = true;
+            this.button4.Enabled = true;
+            this.button5.Enabled = true;
+            this.button6.Enabled = true;
+            this.button7.Enabled = true;
+            this.button8.Enabled = true;
+            this.button9.Enabled = true;
+        }
+
+        private void BlockOperations()
+        {
+            this.buttonDivision.Enabled = false;
+            this.buttonPlus.Enabled = false;
+            this.buttonMinus.Enabled = false;
+            this.buttonMultiplication.Enabled = false;
+        }
+
+        private void UnblockOperations()
+        {
+            this.buttonDivision.Enabled = true;
+            this.buttonPlus.Enabled = true;
+            this.buttonMinus.Enabled = true;
+            this.buttonMultiplication.Enabled = true;
+        }
+
         private int prevValue = 0;
         private int currentValue = 0;
         private string valueBuffer = "";
@@ -60,29 +104,33 @@ namespace WFCalculator
                     Calculate(prevOperation);
                     prevOperation = new Plus();
                     valueBuffer = "";
+                    BlockOperations();
                     break;
                 case ("-"):
                     currentValue = Convert.ToInt32(valueBuffer);
                     Calculate(prevOperation);
                     prevOperation = new Minus();
                     valueBuffer = "";
+                    BlockOperations();
                     break;
                 case ("/"):
                     currentValue = Convert.ToInt32(valueBuffer);
                     Calculate(prevOperation);
                     prevOperation = new Division();
                     valueBuffer = "";
+                    BlockOperations();
                     break;
                 case("*"):
                     currentValue = Convert.ToInt32(valueBuffer);
                     Calculate(prevOperation);
                     prevOperation = new Multiplication();
                     valueBuffer = "";
+                    BlockOperations();
                     break;
                 default:
                     valueBuffer += button.Text;
+                    UnblockOperations();
                     break;
-
 
             }
         }
@@ -100,6 +148,9 @@ namespace WFCalculator
             currentValue = 0;
             valueBuffer = "";
             prevOperation = new Plus();
+            UnblockOperations();
+            UnBlockOperands();
+            this.buttonResult.Enabled = true;
         }
 
         /// <summary>
@@ -115,6 +166,9 @@ namespace WFCalculator
             currentValue = 0;
             valueBuffer = "";
             prevOperation = new Plus();
+            BlockOperations();
+            BlockOperands();
+            this.buttonResult.Enabled = false;
         }
     }
 }
