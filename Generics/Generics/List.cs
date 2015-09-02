@@ -10,7 +10,7 @@ namespace Generics
     /// <summary>
     /// List class
     /// </summary>
-    public class List<ElementType> : IEnumerable
+    public class List<ElementType> : IEnumerable<ElementType>
     {
         /// <summary>
         /// Creates empty list
@@ -175,7 +175,7 @@ namespace Generics
         /// <summary>
         /// List enumerator
         /// </summary>
-        public class ListEnumerator : IEnumerator
+        public class ListEnumerator : IEnumerator<ElementType>
         {
             private int position = -1;
             private List<ElementType> list;
@@ -187,7 +187,7 @@ namespace Generics
                 currentElement = null;
             }
 
-            public object Current
+            public ElementType Current
             {
                 get
                 {
@@ -198,6 +198,11 @@ namespace Generics
             public void Dispose()
             {
                 this.list = null;
+            }
+
+            object IEnumerator.Current
+            {
+                get { return Current; }
             }
 
             public bool MoveNext()
@@ -216,22 +221,20 @@ namespace Generics
 
             public void Reset()
             {
+                currentElement = null;
                 position = -1;
-            }
-
-            object IEnumerator.Current
-            {
-                get { return Current; }
             }
         }
 
-        /// <summary>
-        /// IEnumerable inerface implementation
-        /// </summary>
-        /// <returns></returns>
+
+        public IEnumerator<ElementType> GetEnumerator()
+        {
+            return new ListEnumerator(this);
+        }
+
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return new ListEnumerator(this) as IEnumerator;
+            return GetEnumerator();
         }
     }
 }
