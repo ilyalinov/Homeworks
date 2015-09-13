@@ -1,0 +1,40 @@
+Astronauts on the International Space Station have used their 3-D printer to make a wrench from instructions sent up in an email.
+
+It is the first time hardware has been "emailed" to space.
+
+Nasa was responding to a request by ISS commander Barry Wilmore for a ratcheting socket wrench.
+
+Previously, if astronauts requested a specific item they could have waited months for it to be flown up on one of the regular supply flights.
+
+Mike Chen, founder of Made In Space, the company behind the 3-D printer, said: "We had overheard ISS Commander Barry Wilmore (who goes by "Butch") mention over the radio that he needed one, so we designed one in CAD and sent it up to him faster than a rocket ever could have."
+
+Mr Wilmore installed the printer on the ISS on 17 November. On 25 November he used the machine to fabricate its first object, a replacement part for the printer.
+
+Nasa says the capability will help astronauts be more self-reliant on future long duration space missions.
+
+Mike Chen added: "The socket wrench we just manufactured is the first object we designed on the ground and sent digitally to space, on the fly.
+
+"It also marks the end of our first experiment—a sequence of 21 prints that together make up the first tools and objects ever manufactured off the surface of the Earth."
+
+The other 21 objects were designed before the 3D printer was shipped to the space station in September on a SpaceX Dragon supply flight.
+
+line
+Analysis: David Shukman, BBC science editor
+
+If a 3D printer can churn out something as useful as a tool in space, what else is possible?
+
+Spare parts, components, even equipment, according to the company behind the printer, Made In Space. And that's just the start.
+
+As one might expect from an energetic Silicon Valley start-up, the vision is mind-boggling. Already it plans to send a larger 3D manufacturing machine into orbit next year.
+
+The ambition is for Nasa or other space agencies or companies to routinely send their printing orders up to the International Space Station and for a range of objects to be produced.
+
+This would open the way to create hardware not only for the ISS itself but also for equipment to be deployed beyond it, conceivably such as satellites.
+
+And, looking further ahead, the thinking becomes even more radical. Made In Space says it's been trying out possible raw materials for its printers including a substance similar to lunar soil.
+
+So in theory, a 3D printer despatched to the Moon might be able to dig into the lunar surface, scoop up what is called the regolith, and transform it into the elements needed for a moon base.
+
+That prospect is extremely distant, obviously.
+
+For the moment, the astronauts on board the ISS will be happy to know that if they need a new spanner, they can make one in under an hour.
