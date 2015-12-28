@@ -50,7 +50,16 @@ namespace RobotsNamespace
             }
 
             robotsGraph.PaintGraphInTwoColors();
-            return DoAllRobotsHaveTheSameColor();
+            if (DoAllRobotsHaveTheSameColor())
+            {
+                return true;
+            }
+            else if (CountRobotsWithTheSameColor(0) > 1 && CountRobotsWithTheSameColor(1) > 1)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -68,6 +77,19 @@ namespace RobotsNamespace
                 }
             }
             return true;
+        }
+
+        private int CountRobotsWithTheSameColor(int color)
+        {
+            int result = 0;
+            foreach (var item in robotsGraph.VerticeColor)
+            {
+                if (item == color)
+                {
+                    result++;
+                }
+            }
+            return result;
         }
     }
 }
