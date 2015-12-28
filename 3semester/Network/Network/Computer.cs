@@ -38,7 +38,6 @@ namespace NetworkNamespace
             double generatedRandomNumber = random.NextDouble();
             if (CompareProbability(generatedRandomNumber))
             {
-                this.IsInfected = true;
                 return true;
             }
             else
@@ -55,6 +54,6 @@ namespace NetworkNamespace
         /// <summary>
         /// Is this computer infected (1 - yes, 0 - no)
         /// </summary>
-        public bool IsInfected { get; private set; }
+        public bool IsInfected { get; set; }
     }
 }

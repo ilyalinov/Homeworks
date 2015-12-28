@@ -17,11 +17,7 @@ namespace NetworkNamespace
 
         public override bool CompareProbability(double generatedRandomNumber)
         {
-            if (generatedRandomNumber > probability)
-            {
-                return false;
-            }
-            return true;
+            return !(probability < generatedRandomNumber);
         }
 
         const string type = "Linux computer";

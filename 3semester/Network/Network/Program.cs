@@ -11,7 +11,7 @@ namespace NetworkNamespace
             var network = new Network();
             var random = new Random();
 
-            while (network.NumberOfNotInfected > 0)
+            while (network.Graph.NumberOfNotInfected > 0)
             {
                 network.MakeAMove(random);
             }

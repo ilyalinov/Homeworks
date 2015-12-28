@@ -12,7 +12,7 @@ namespace NetworkTestNamespace
         private Random myRandom;
 
         /// <summary>
-        /// "Random" number is always equal to 1
+        /// "Random" number is always equals to 1
         /// </summary>
         private class MyRandom : Random
         {
@@ -28,10 +28,8 @@ namespace NetworkTestNamespace
             Computer newPC1 = new LinuxComputer(false);
             Computer newPC2 = new WindowsComputer(false);
             Random myRandom = new MyRandom();
-            newPC1.TryToInfect(myRandom);
-            newPC2.TryToInfect(myRandom);
-            Assert.IsTrue(newPC1.IsInfected);
-            Assert.IsTrue(newPC2.IsInfected);
+            Assert.IsTrue(newPC1.TryToInfect(myRandom));
+            Assert.IsTrue(newPC2.TryToInfect(myRandom));
         }
 
         [TestMethod]

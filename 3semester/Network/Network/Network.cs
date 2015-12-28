@@ -6,103 +6,26 @@ namespace NetworkNamespace
 {
     public class Network
     {
-        private int[ , ] arrayOfConnections;
-
-        public List<Computer> listOfComputers { get; private set;}
-
-        public List<int> NumbersOfInfected { get; private set; }
-
-        public int NumberOfNotInfected { get; private set; }
+        public NetworkGraph Graph { get; private set; }
 
         /// <summary>
-        /// Create network using text data from file "Input.txt"
+        /// Creates network
         /// </summary>
         public Network()
         {
-            listOfComputers = new List<Computer>();
-            NumbersOfInfected = new List<int>();
-            StreamReader sr = new StreamReader("Input.txt");
-            string buffer = sr.ReadLine();
-            int numberOfComputers = Int32.Parse(buffer);
-            NumberOfNotInfected = numberOfComputers;
-            arrayOfConnections = new int[numberOfComputers, numberOfComputers];
-            for (int i = 0; i < numberOfComputers; i++)
-            {
-                for (int j = i; j < numberOfComputers; j++)
-                {
-                    arrayOfConnections[i, j] = 0;
-                    arrayOfConnections[j, i] = 0;
-                }
-            }
-
-            ReadComputersFromFile(sr, numberOfComputers);
-            ReadConnections(sr);
-
-            sr.Close();
-        }
-
-        /// <summary>
-        /// Read computers from file
-        /// </summary>
-        /// <param name="sr"> stream reader </param>
-        /// <param name="numberOfComputers"> total number of computers </param>
-        private void ReadComputersFromFile(StreamReader sr, int numberOfComputers)
-        {
-            for (int i = 0; i < numberOfComputers; i++)
-            {
-                string buffer = sr.ReadLine();
-                string[] splittedBuffer = buffer.Split(' ');
-                switch (splittedBuffer[0])
-                {
-                    case "windows":
-                        bool isInfected = Convert.ToBoolean(Convert.ToInt32(splittedBuffer[1]));
-                        if (isInfected)
-                        {
-                            NumberOfNotInfected--;
-                            NumbersOfInfected.Add(listOfComputers.Count);
-                        }
-                        listOfComputers.Add(new WindowsComputer(isInfected));
-                        break;
-                    case "linux":
-                        isInfected = Convert.ToBoolean(Convert.ToInt32(splittedBuffer[1]));
-                        if (isInfected)
-                        {
-                            NumberOfNotInfected--;
-                            NumbersOfInfected.Add(listOfComputers.Count);
-                        }
-                        listOfComputers.Add(new LinuxComputer(isInfected));
-                        break;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Get connections between computers from file
-        /// </summary>
-        /// <param name="sr"> stream reader </param>
-        private void ReadConnections(StreamReader sr)
-        {
-            string buffer;
-            while ((buffer = sr.ReadLine()) != null)
-            {
-                string[] splittedBuffer = buffer.Split(' ');
-                int i = Int32.Parse(splittedBuffer[0]);
-                int j = Int32.Parse(splittedBuffer[1]);
-                arrayOfConnections[i, j] = 1;
-                arrayOfConnections[j, i] = 1;
-            }
+            Graph = new NetworkGraph();
         }
 
         public List<Computer> GetAllConnectedWithInfectedComputers()
         {
             List<Computer> newList = new List<Computer>();
-            foreach (var i in NumbersOfInfected)
+            foreach (var i in Graph.NumbersOfInfected)
             {
-                for (int j = 0; j < listOfComputers.Count; j++)
+                for (int j = 0; j < Graph.ListOfComputers.Count; j++)
                 {
-                    if (arrayOfConnections[i, j] == 1)
+                    if (Graph.ArrayOfConnections[i, j] == 1)
                     {
-                        newList.Add(listOfComputers[j]);
+                        newList.Add(Graph.ListOfComputers[j]);
                     }
                 }
             }
@@ -115,17 +38,22 @@ namespace NetworkNamespace
         /// <param name="random"></param>
         public void MakeAMove(Random random)
         {
-            for (int i = 0; i < listOfComputers.Count; i++)
+            for (int i = 0; i < Graph.ListOfComputers.Count; i++)
             {
                 if (MayComputerBeInfected(i))
                 {
-                    bool temp = listOfComputers[i].TryToInfect(random);
+                    bool temp = Graph.ListOfComputers[i].TryToInfect(random);
                     if (temp)
                     {
-                        this.NumberOfNotInfected--;
-                        NumbersOfInfected.Add(i);
+                        Graph.NumberOfNotInfected--;
+                        Graph.NumbersOfInfected.Add(i);
                     }
                 }
+            }
+
+            foreach (var item in Graph.NumbersOfInfected)
+            {
+                Graph.ListOfComputers[item].IsInfected = true;
             }
 
             PrintCurrentState();
@@ -137,10 +65,10 @@ namespace NetworkNamespace
         private void PrintCurrentState()
         {
             Console.Write("Current state: ");
-            for (int i = 0; i < listOfComputers.Count; i++)
+            for (int i = 0; i < Graph.ListOfComputers.Count; i++)
             {
-                Console.Write("{0}){1} ", i + 1, listOfComputers[i].Type);
-                if (listOfComputers[i].IsInfected)
+                Console.Write("{0}){1} ", i + 1, Graph.ListOfComputers[i].Type);
+                if (Graph.ListOfComputers[i].IsInfected)
                 {
                     Console.Write("is infected; ");
                 }
@@ -160,14 +88,14 @@ namespace NetworkNamespace
         /// <returns></returns>
         private bool MayComputerBeInfected(int computerNumber)
         {
-            if (listOfComputers[computerNumber].IsInfected)
+            if (Graph.ListOfComputers[computerNumber].IsInfected)
             {
                 return false;
             }
 
-            for (int j = 0; j < arrayOfConnections.GetUpperBound(0); j++)
+            for (int j = 0; j < Graph.ArrayOfConnections.GetUpperBound(0); j++)
             {
-                if (arrayOfConnections[computerNumber, j] == 1 && listOfComputers[j].IsInfected)
+                if (Graph.ArrayOfConnections[computerNumber, j] == 1 && Graph.ListOfComputers[j].IsInfected)
                 {
                     return true;
                 }

@@ -16,11 +16,7 @@ namespace NetworkNamespace
 
         public override bool CompareProbability(double generatedRandomNumber)
         {
-            if (generatedRandomNumber > probability)
-            {
-                return false;
-            }
-            return true;
+            return !(generatedRandomNumber > probability);
         }
 
         const string type = "Windows computer";
