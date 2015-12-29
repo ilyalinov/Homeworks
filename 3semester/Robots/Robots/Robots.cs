@@ -50,11 +50,12 @@ namespace RobotsNamespace
             }
 
             robotsGraph.PaintGraphInTwoColors();
+
             if (DoAllRobotsHaveTheSameColor())
             {
                 return true;
             }
-            else if (CountRobotsWithTheSameColor(0) > 1 && CountRobotsWithTheSameColor(1) > 1)
+            else if (CountRobotsWithTheSameColor(1) > 1 && CountRobotsWithTheSameColor(2) > 1)
             {
                 return true;
             }

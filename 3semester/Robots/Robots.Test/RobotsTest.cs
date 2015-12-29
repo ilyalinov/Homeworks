@@ -56,13 +56,13 @@ namespace Robots.Test
             Assert.IsTrue(robots.CanRobotsBeDestroyed());
         }
 
-        // Robots can't destroy themselves
+        // Robots can destroy themselves
         [TestMethod]
         public void CanAllRobotsBeDestroyedTest3()
         {
             var robots = new JumpingRobots("Robots3.txt");
             robots.CreateRobotsGraph("Graph3.txt");
-            Assert.IsFalse(robots.CanRobotsBeDestroyed());
+            Assert.IsTrue(robots.CanRobotsBeDestroyed());
         }
 
         // Robots can't destroy themselves
@@ -72,6 +72,15 @@ namespace Robots.Test
             var robots = new JumpingRobots("Robots4.txt");
             robots.CreateRobotsGraph("Graph4.txt");
             Assert.IsFalse(robots.CanRobotsBeDestroyed());
+        }
+
+        // Robots can be destroyed
+        [TestMethod]
+        public void CanAllRobotsBeDestroyedTest5()
+        {
+            var robots = new JumpingRobots("Robots5.txt");
+            robots.CreateRobotsGraph("Graph5.txt");
+            Assert.IsTrue(robots.CanRobotsBeDestroyed());
         }
     }
 }

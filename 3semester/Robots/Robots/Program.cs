@@ -10,7 +10,9 @@ namespace RobotsNamespace
     {
         static void Main(string[] args)
         {
-
+            var robots = new JumpingRobots("Robots5.txt");
+            robots.CreateRobotsGraph("Graph5.txt");
+            Console.WriteLine(robots.CanRobotsBeDestroyed());
         }
     }
 }
