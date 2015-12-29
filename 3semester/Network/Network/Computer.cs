@@ -36,14 +36,7 @@ namespace NetworkNamespace
         public bool TryToInfect(Random random)
         {
             double generatedRandomNumber = random.NextDouble();
-            if (CompareProbability(generatedRandomNumber))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return CompareProbability(generatedRandomNumber);
         }
 
         /// <summary>
