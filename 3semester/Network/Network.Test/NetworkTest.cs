@@ -45,5 +45,19 @@ namespace NetworkTestNamespace
                 Assert.IsTrue(item.IsInfected);
             }
         }
+
+        [TestMethod]
+        public void NotAllInfectTest()
+        {
+            network = new Network();
+            myRandom = new MyRandom();
+
+            var newList = network.NotInfectedAfterMove();
+            network.MakeAMove(myRandom);
+            foreach (var item in newList)
+            {
+                Assert.IsFalse(item.IsInfected);
+            }
+        }
     }
 }

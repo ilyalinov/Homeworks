@@ -32,6 +32,43 @@ namespace NetworkNamespace
             return newList;
         }
 
+        public List<Computer> GetAllNotInfected()
+        {
+            List<Computer> newList = new List<Computer>();
+            foreach (var item in Graph.ListOfComputers)
+            {
+                if (!item.IsInfected)
+                {
+                    newList.Add(item);
+                }
+            }
+            return newList;
+        }
+
+        public List<Computer> NotInfectedAfterMove()
+        {
+            List<Computer> newList = new List<Computer>();
+            for (int i = 0; i < Graph.ListOfComputers.Count; i++)
+            {
+                if (!Graph.ListOfComputers[i].IsInfected)
+                {
+                    bool canBeInfected = false;
+                    for (int j = 0; j < Graph.ListOfComputers.Count; j++)
+                    {
+                        if (Graph.ArrayOfConnections[i, j] == 1)
+                        {
+                            canBeInfected = true;
+                        }
+                    }
+                    if (!canBeInfected)
+                    {    
+                        newList.Add(Graph.ListOfComputers[i]);
+                    }
+                }
+            }
+            return newList;
+        }
+
         /// <summary>
         /// Make a step. Network tries to infect all not infected computers which are directly connected with infected.
         /// </summary>
