@@ -34,5 +34,6 @@ System.Console.WriteLine(listReverse testList)
 let listCreator x = 
     List.map (fun n -> pown 2 n) <| [x..x+4]
 
+printfn "%A" <| listCreator 5
 
 
