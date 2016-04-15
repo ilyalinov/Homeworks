@@ -15,13 +15,13 @@
         printfn "%b" (list = [])
           
 // tests:         
-let myStack = Stack([1;2;3])
-myStack.IsEmpty
-myStack.Pop
-myStack.Pop
-myStack.Pop
-myStack.IsEmpty
-myStack.Push(1)
-myStack.IsEmpty
-myStack.Pop
-myStack.Pop
+//let myStack = Stack([1;2;3])
+//myStack.IsEmpty
+//myStack.Pop
+//myStack.Pop
+//myStack.Pop
+//myStack.IsEmpty
+//myStack.Push(1)
+//myStack.IsEmpty
+//myStack.Pop
+//myStack.Pop
