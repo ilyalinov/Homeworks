@@ -6,18 +6,19 @@ let f l =
             List.min l
         else
             (List.min l) * 2
-    let rec fUtil acc l =
+    let rec fUtil acc maxi currenti l =
         match l with
         | [] 
-        | [_] -> acc
+        | [_] -> maxi
         | head :: tail -> 
             if head + tail.Head > acc then
-                fUtil <| head + tail.Head <| tail
+                fUtil <| head + tail.Head <| currenti <| currenti + 1 <| tail
             else 
-                fUtil acc tail
-    fUtil min l
-                      
-printfn "%A" (f [1..100])
+                fUtil acc <| maxi <| currenti + 1 <| tail
+    fUtil min -1 0 l
+                 
+let testList = [100; 99; 98]      
+printfn "%A" (f testList)
 
 // task 2.1
 let numberOfEven1 list = 
@@ -81,11 +82,18 @@ printfn "%A" <| treeCalculate (Node("*", Node("5", Empty, Empty), Node("6", Empt
 // but i have no idea how to write such thing so i leave it undone
 
 // task 5
-let rec intsFrom n = 
+let isPrime x = 
+    let seqUtil = 
+        seq {
+            2 .. int(sqrt <| float(x))
+        }
+    Seq.forall (fun y -> x % y <> 0) seqUtil
+
+let rec primesFrom n = 
     seq {
-        yield n
-        yield! intsFrom <| n + 1
+        if isPrime <| n then yield n
+        yield! primesFrom <| n + 1
     }
 
-let integers = intsFrom 1
+let integers = primesFrom 2
 printfn "%A" integers
