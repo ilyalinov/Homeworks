@@ -8,6 +8,7 @@ AccelerometerWidget::AccelerometerWidget(QWidget *parent)
 	, time(0)
 	, axisMargin(10)
 {
+	this->setFixedSize(width(), height());
 
 	QTime now = QTime::currentTime();
 	qsrand(now.msec());
