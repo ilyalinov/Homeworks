@@ -8,6 +8,9 @@ let menu =
         printfn "4 - save data to file"
         printfn "5 - write file's data to list"
     
+type filterOption = 
+    | SearchName
+    | SearchPhone
 
 let phonebook (fileName : string) = 
     let getKey x = 
@@ -17,9 +20,8 @@ let phonebook (fileName : string) =
     let filter l s option =
         let result = 
             match option with
-            | "name" -> List.map (fun x -> fst x) <| List.filter (fun x -> snd x = s) l
-            | "phone" -> List.map (fun x -> snd x) <| List.filter (fun x -> fst x = s) l
-            | _ -> failwith "wrong option"
+            | SearchName -> List.map (fun x -> fst x) <| List.filter (fun x -> snd x = s) l
+            | SearchPhone -> List.map (fun x -> snd x) <| List.filter (fun x -> fst x = s) l
         match result with
         | [] -> 
             printfn "No coincedences found"
@@ -44,12 +46,12 @@ let phonebook (fileName : string) =
             | System.ConsoleKey.D2 -> 
                 printfn "enter your phone:"
                 let s = System.Console.ReadLine()
-                filter book s "name"
+                filter book s SearchName
                 phonebookUtil <| getKey () <| book
             | System.ConsoleKey.D3 -> 
                 printfn "enter your name:"
                 let s = System.Console.ReadLine()
-                filter book s "phone"
+                filter book s SearchPhone
                 phonebookUtil <| getKey () <| book
             | System.ConsoleKey.D4 ->
                 use sr = new StreamWriter(fileName)
