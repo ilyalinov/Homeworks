@@ -7,11 +7,11 @@
 #include <QPen>
 #include <QtGlobal>
 
-class AccelerometerWidget : public QWidget
+class VectorSensorWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	AccelerometerWidget(QWidget *parent = 0);
+	VectorSensorWidget(QWidget *parent = 0);
 
 protected:
 	void paintEvent(QPaintEvent *);

@@ -1,7 +1,7 @@
 #include "AccelerometerWidget.h"
 #include <QTime>
 
-AccelerometerWidget::AccelerometerWidget(QWidget *parent)
+VectorSensorWidget::VectorSensorWidget(QWidget *parent)
 	: QWidget(parent)
 	, mInterval(500)
 	, isFirstIteration(true)
@@ -19,7 +19,7 @@ AccelerometerWidget::AccelerometerWidget(QWidget *parent)
 	mTimer.start();
 }
 
-void AccelerometerWidget::paintEvent(QPaintEvent *)
+void VectorSensorWidget::paintEvent(QPaintEvent *)
 {
 	QPen bluePen(Qt::blue, 2, Qt::SolidLine);
 	QPen redPen(Qt::red, 2, Qt::SolidLine);
@@ -47,7 +47,7 @@ void AccelerometerWidget::paintEvent(QPaintEvent *)
 	drawDiagram(painter, pointsZ, greenPen);
 }
 
-void AccelerometerWidget::delay(int millisecondsToWait)
+void VectorSensorWidget::delay(int millisecondsToWait)
 {
 	QTime dieTime = QTime::currentTime().addMSecs( millisecondsToWait );
 	while(QTime::currentTime() < dieTime)
@@ -56,7 +56,7 @@ void AccelerometerWidget::delay(int millisecondsToWait)
 	}
 }
 
-void AccelerometerWidget::setMatrix(QPainter &painter)
+void VectorSensorWidget::setMatrix(QPainter &painter)
 {
 	const qreal x0 = static_cast<qreal>(axisMargin);
 	const qreal y0 = height() / 2;
@@ -69,7 +69,7 @@ void AccelerometerWidget::setMatrix(QPainter &painter)
 	painter.setMatrix(m);
 }
 
-void AccelerometerWidget::drawAxis(QPainter &painter)
+void VectorSensorWidget::drawAxis(QPainter &painter)
 {
 	QPen blackPen(Qt::black, 2, Qt::SolidLine);
 	painter.setPen(blackPen);
@@ -92,7 +92,7 @@ void AccelerometerWidget::drawAxis(QPainter &painter)
 	painter.drawPolygon(yArrow);
 }
 
-void AccelerometerWidget::drawAxisXName(QPainter &painter)
+void VectorSensorWidget::drawAxisXName(QPainter &painter)
 {
 	QString name = "time, sec";
 	QPointF position(width() - 3 * axisMargin, height() / 2 + 2 * axisMargin);
@@ -104,7 +104,7 @@ void AccelerometerWidget::drawAxisXName(QPainter &painter)
 	painter.drawText(rect, Qt::AlignCenter, name);
 }
 
-void AccelerometerWidget::drawDiagram(QPainter &painter, QVector<QPointF> points, QPen pen)
+void VectorSensorWidget::drawDiagram(QPainter &painter, QVector<QPointF> points, QPen pen)
 {
 	painter.setPen(pen);
 	int i = 0;
@@ -114,7 +114,7 @@ void AccelerometerWidget::drawDiagram(QPainter &painter, QVector<QPointF> points
 	}
 }
 
-void AccelerometerWidget::renew()
+void VectorSensorWidget::renew()
 {
 	int randomNumberX = qrand() % height() - (height() / 2);
 	int randomNumberY = qrand() % height() - (height() / 2);
@@ -131,7 +131,7 @@ void AccelerometerWidget::renew()
 		time++;
 }
 
-void AccelerometerWidget::updateReadings(QVector<QPointF> &points, QPointF newPoint)
+void VectorSensorWidget::updateReadings(QVector<QPointF> &points, QPointF newPoint)
 {
 	if (time > 20)
 	{
@@ -150,7 +150,7 @@ void AccelerometerWidget::updateReadings(QVector<QPointF> &points, QPointF newPo
 	}
 }
 
-void AccelerometerWidget::markTimeAxis(QPainter &painter)
+void VectorSensorWidget::markTimeAxis(QPainter &painter)
 {
 	painter.save();
 	// flip y axis back
@@ -175,7 +175,7 @@ void AccelerometerWidget::markTimeAxis(QPainter &painter)
 	painter.restore();
 }
 
-qreal AccelerometerWidget::xCoordinate()
+qreal VectorSensorWidget::xCoordinate()
 {
 	if (time > 20)
 	{
